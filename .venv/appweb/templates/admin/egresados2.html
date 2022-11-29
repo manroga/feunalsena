@@ -1,0 +1,42 @@
+{% include 'admin/cabecera.html' %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Nuevo Egresado</h1>
+                </div>
+                <div class="card-body">
+                    <form action="/admin/egresados/guardar2" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                          <label for="txtNombre" class="form-label">Nombre:</label>
+                          <input type="text" class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Escriba el nombre del Egresado">
+                        <div class="mb-3">
+                          <label for="txtImagen" class="form-label">Imagen:</label>
+                          <input type="file" class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione una foto">
+                         <div class="mb-3">
+                           <label for="txtCedula" class="form-label">Cédula:</label>
+                           <input type="text" class="form-control" name="txtCedula" id="txtCedula" aria-describedby="helpId" placeholder="Escriba la Cédula">
+                           <div class="mb-3">
+                            <label for="txtCv" class="form-label">CV:</label>
+                            <input type="file" class="form-control" name="txtCv" id="txtCv" aria-describedby="helpId" placeholder="Suba su CV en PDF">
+                            </div>
+                         </div>
+                        </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar</button>      
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                   
+                </div>
+            </div>
+        </div>
+               
+    </div>
+</div>
+
+<!--  -->
+
+{% include 'admin/pie.html' %}

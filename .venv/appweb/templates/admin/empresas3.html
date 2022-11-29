@@ -1,0 +1,100 @@
+{% include 'admin/cabecera.html' %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Gestionar Empresas</h1>
+                    <a class="btn btn-primary btn-lg" href= /admin/empresas2 type="button">Nuevo</a>
+                </div>
+                <div class="card-body">   
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-primary table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Imagen</th>
+                                            <th scope="col">NIT</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for empresa in empresas %}
+                                        
+                                        <tr>
+                                            <td>{{ empresa[0] }}</td>
+                                            <td>{{ empresa[2] }}</td>
+                                            <td>
+                                                <img width="60" src="/img/{{ empresa[1] }}" class="img-fluid rounded-top" alt="">
+                                            </td>
+                                            <td>{{ empresa[3] }}</td>
+                                        
+                                            <td>
+
+                                                <form>
+
+                                                    <input value= "{{ empresa[0] }}" type="hidden" name="txtID" id="{{empresa[0]}}"> 
+                                                    <input value= "{{ empresa[2] }}" type="hidden" name="txtNombre" id="{{empresa[0]}}">
+                                                    <input value= "{{ empresa[1] }}" type="hidden" name="txtImagen" id="{{empresa[0]}}">
+                                                    <input value= "{{ empresa[3] }}" type="hidden" name="txtCedula" id="{{empresa[0]}}">
+                                                    
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{empresa[0]}}"> Actualizar </button>
+                                                </form>
+                                                
+                                                <form action="/admin/empresas/borrar" method="post">
+
+                                                    <input value= "{{ empresa[0] }}" type="hidden" name="txtID" id="txtID">
+                                                    <button  type="submit" class="btn btn-danger">Eliminar</button>
+
+                                                </form> 
+
+                                            </td>
+                                        </tr>
+                                        
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="modal{{empresa[0]}}" tabindex="-1" aria-labelledby="{{empresa[0]}}" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{empresa[2]}}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="/admin/empresas/actualizar2/{{empresa[0]}}" method="post">
+                                                            <label>Nombre</label>
+                                                            <input type="text" class="form-control mb-3" name="txtNombre" value="{{empresa[2]}}">
+                                                            <!-- <label>Imagen</label>
+                                                            <input type="text" class="form-control mb-3" name="txtImagen" value="{{empresa[1]}}"> -->
+                                                            <label>NIT</label>
+                                                            <input type="text" class="form-control mb-3" name="txtNit" value="{{empresa[3]}}">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+
+                                        
+                                    {% endfor %}
+                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+<!--  -->
+
+{% include 'admin/pie.html' %}

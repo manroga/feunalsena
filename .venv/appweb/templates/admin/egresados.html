@@ -1,0 +1,152 @@
+{% include 'admin/cabecera.html' %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    datos del egresado
+                </div>
+                <div class="card-body">
+                    <form action="/admin/egresados/guardar" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                          <label for="txtNombre" class="form-label">Nombre:</label>
+                          <input type="text"
+                            class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Escriba el nombre del Egresado">
+                        <div class="mb-3">
+                          <label for="txtImagen" class="form-label">Imagen:</label>
+                          <input type="file"
+                            class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione una foto">
+                         <div class="mb-3">
+                           <label for="txtCedula" class="form-label">Cédula:</label>
+                           <input type="text"
+                             class="form-control" name="txtCedula" id="txtCedula" aria-describedby="helpId" placeholder="Escriba la Cédula">
+                        
+                         </div>
+                        </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar</button>      
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="table-responsive">
+                <table class="table table-primary table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Cédula</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for egresado in egresados %}
+                        
+                        <tr>
+                            <td>{{ egresado[0] }}</td>
+                            <td>{{ egresado[2] }}</td>
+                            <td>
+                                <img width="60" src="/img/{{ egresado[1] }}" class="img-fluid rounded-top" alt="">
+                                <!-- nombre de imagen almacenado en {{ egresado[2] }}         data-bs-toogle="modal" data-bs-target="#modal{{egresado[0]}}"-->
+                            </td>
+                            <td>{{ egresado[3] }}</td>
+                           
+                            <td>
+
+                                <form>
+
+                                    <input value= "{{ egresado[0] }}" type="hidden" name="txtID" id="{{egresado[0]}}"> 
+                                    <input value= "{{ egresado[2] }}" type="hidden" name="txtNombre" id="{{egresado[0]}}">
+                                    <input value= "{{ egresado[1] }}" type="hidden" name="txtImagen" id="{{egresado[0]}}">
+                                    <input value= "{{ egresado[3] }}" type="hidden" name="txtCedula" id="{{egresado[0]}}">
+                                    <button  type="submit" class="btn btn-success" id="{{egresado[0]}}"data-bs-toogle="modal" data-bs-target="#modal{{egresado[0]}}">Actualizar</button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{egresado[0]}}"> Launch demo modal </button>
+                                </form>
+                                <br>
+                                <form action="/admin/egresados/borrar" method="post">
+
+                                    <input value= "{{ egresado[0] }}" type="hidden" name="txtID" id="txtID">
+                                    <button  type="submit" class="btn btn-danger">Eliminar</button>
+
+                                </form> 
+
+                            </td>
+                        </tr>
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal{{egresado[0]}}" tabindex="-1" aria-labelledby="{{egresado[0]}}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{egresado[2]}}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/admin/egresados/actualizar/{{egresado[0]}}" method="post">
+                                            <label>Nombre</label>
+                                            <input type="text" class="form-control mb-3" name="txtNombre" value="{{egresado[2]}}">
+                                            <label>Imagen</label>
+                                            <input type="text" class="form-control mb-3" name="txtImagen" value="{{egresado[1]}}">
+                                            <label>Cédula</label>
+                                            <input type="text" class="form-control mb-3" name="txtCedula" value="{{egresado[3]}}">
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+
+
+
+                        <!-- Modal 
+                        <div class="modal fade" id="modal{{egresado[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{egresado[2]}}</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/edit/{{egresado[0]}}" method="post">
+                                        <label>Nombre</label>
+                                        <input type="text" class="form-control mb-3" name="txtNombre" value="{{egresado[2]}}">
+                                        <label>Imagen</label>
+                                        <input type="text" class="form-control mb-3" name="txtImagen" value="{{egresado[1]}}">
+                                        <label>Cédula</label>
+                                        <input type="text" class="form-control mb-3" name="txtCedula" value="{{egresado[3]}}">
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                           --> 
+                        
+                    {% endfor %}
+                       
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+<!--  -->
+
+{% include 'admin/pie.html' %}
