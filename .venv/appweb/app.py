@@ -1,14 +1,15 @@
 # importa las librerias que se necesitan
 import os
 import mysql.connector
-from flask import Flask, render_template, request, redirect, send_from_directory, session, url_for # metodos para renderizar, requerir, redireccionar, enviar desde directorio, abrir sesiones,
+from flask import Flask, render_template, request, redirect, send_from_directory, session # metodos para renderizar, requerir, redireccionar, enviar desde directorio, abrir sesiones,
 from flaskext.mysql import MySQL #metodo para usar los script de MySQL
 from datetime import datetime #metodo para poner tiempo exacto para que las imagenes con nombre duplicado queden diferentes
-from werkzeug.utils import secure_filename
+
 
 # le da nombre a la app por medio de Flask. Siempre se escribe
 app=Flask(__name__)
 app.secret_key="feunal" 
+
 # conectar a BD
 mysql=MySQL()
 app.config['MYSQL_DATABASE_HOST']='localhost'
@@ -75,7 +76,7 @@ def egresados():
     conexion.commit()
     print(egresados) #solo sirve para verificar la consulta en consola
 
-    # mostrar query en página libros.html del SITIO. Ojo a libros y libros, el primero toma el nombre del segundo
+    # mostrar query en página egresados.html del SITIO. Ojo a egresados y egresados, el primero toma el nombre del segundo
     return render_template('/sitio/egresados.html', egresados=egresados)
 
 # conectar a página EMPRESAS
@@ -90,7 +91,7 @@ def empresas():
     conexion.commit()
     print(empresas) #solo sirve para verificar la consulta en consola
 
-    # mostrar query en página libros.html del SITIO. Ojo a libros y libros, el primero toma el nombre del segundo
+    # mostrar query en página empresas.html del SITIO. Ojo a empresas y empresas, el primero toma el nombre del segundo
     return render_template('/sitio/empresas.html', empresas=empresas)
 
 
@@ -111,7 +112,7 @@ def cv():
     conexion.commit()
     print(cv) #solo sirve para verificar la consulta en consola
 
-    # mostrar query en página libros.html del SITIO. Ojo a libros y libros, el primero toma el nombre del segundo
+    # mostrar query en página cv.html del SITIO. Ojo a cv y cv, el primero toma el nombre del segundo
     return render_template('/sitio/cv.html', cv=cv) 
 
 # conectar a página INDEX ADMINISTRADOR
@@ -171,7 +172,7 @@ def admin_egresados2():
     conexion.commit()
     print(egresados) #solo sirve para verificar la consulta en consola
     
-    # mostrar query en página egresados.html del admin. Ojo a libros y libros, el primero toma el nombre del segundo
+    # mostrar query en página egresados.html del admin. Ojo a egresados y egresados, el primero toma el nombre del segundo
     return render_template('/admin/egresados2.html', egresados=egresados)
 
 
@@ -283,7 +284,7 @@ def admin_egresados3():
     conexion.commit()
     print(egresados) #solo sirve para verificar la consulta en consola
     
-    # mostrar query en página egresados.html del admin. Ojo a libros y libros, el primero toma el nombre del segundo
+    # mostrar query en página egresados.html del admin. Ojo a egresados y egresados, el primero toma el nombre del segundo
     return render_template('/admin/egresados3.html', egresados=egresados)
 
 # guardar en BD ADMIN EGRESADOS ACTUALIZAR2
@@ -359,7 +360,7 @@ def admin_empresas2():
     conexion.commit()
     print(empresas) #solo sirve para verificar la consulta en consola
     
-    # mostrar query en página egresados.html del admin. Ojo a libros y libros, el primero toma el nombre del segundo
+    # mostrar query en página egresados.html del admin. Ojo a empresas y empresas, el primero toma el nombre del segundo
     return render_template('/admin/empresas2.html', empresas=empresas)
 
 
@@ -429,7 +430,7 @@ def admin_empresas3():
     conexion.commit()
     print(empresas) #solo sirve para verificar la consulta en consola
     
-    # mostrar query en página empresas.html del admin. Ojo a libros y libros, el primero toma el nombre del segundo
+    # mostrar query en página empresas.html del admin. Ojo a empresas y empresas, el primero toma el nombre del segundo
     return render_template('/admin/empresas3.html', empresas=empresas)
 
 
