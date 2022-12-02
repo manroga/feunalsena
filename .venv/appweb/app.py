@@ -131,16 +131,32 @@ def admin_login():
     return render_template('admin/login.html') 
 
 # validar usuario y contraseña en la página login
-@app.route('/admin/login', methods=['POST'])
+@app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login_post():
-    _usuario=request.form['txtUsuario'] #pide los datos desde el formulario
-    _password=request.form['txtPassword'] #pide los datos desde el formulario
+    if request.method =='POST':
+        _usuario=request.form['txtUsuario'] #pide los datos desde el formulario
+        _password=request.form['txtPassword'] #pide los datos desde el formulario
     print (_usuario) #solo sirve para verificar la consulta en consola
     print (_password) #solo sirve para verificar la consulta en consola
 
+    """
+    conexion=mysql.connect()
+    cursor=conexion.cursor()
+    cursor.execute("SELECT * FROM `usuarios`WHERE nombre=%s, password=%s", (_usuario, _password))
+    _usuariolog=cursor.fetchone()
+    #_usuariolog.close
+    conexion.commit()
+    print(_usuariolog) #solo sirve para verificar la consulta en consola
+    
+    if len(user)>0:
+         if _usuariolog ==_usuario and _passwordlog ==_password: #procedimiento para verificar si concuerdan los datos. 
+            session["login"]=True #si la operacion anterior devuelve un true hace lo que está desde esta linea incluida.
+            session["usuario"]="Usuario"
+            return redirect ("/admin") #si concuerdan los datos lo envia al inicio de admin
+        """
     if _usuario=="admin" and _password=="123": #procedimiento para verificar si concuerdan los datos. con BD se pregunta mediante un WHERE usuario == admin y password==123.
         session["login"]=True #si la operacion anterior devuelve un true hace lo que está desde esta linea incluida.
-        session["usuario"]="Administrador"
+        session["usuario"]="Usuario"
         return redirect ("/admin") #si concuerdan los datos lo envia al inicio de admin
 
     return render_template('/admin/login.html', mensaje="Acceso Denegado") # No concuerdan los datos lo envia a login de nuevo
