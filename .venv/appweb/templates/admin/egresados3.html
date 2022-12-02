@@ -40,11 +40,12 @@
                                                     <input value= "{{ egresado[2] }}" type="hidden" name="txtNombre" id="{{egresado[0]}}">
                                                     <input value= "{{ egresado[1] }}" type="hidden" name="txtImagen" id="{{egresado[0]}}">
                                                     <input value= "{{ egresado[3] }}" type="hidden" name="txtCedula" id="{{egresado[0]}}">
+                                                    <input value= "{{ egresado[4] }}" type="hidden" name="txtCv" id="{{egresado[0]}}">
                                                     
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{egresado[0]}}"> Actualizar </button>
                                                 </form>
                                                 
-                                                <form action="/admin/egresados/borrar" method="post">
+                                                <form action="/admin/egresados/borrar2" method="post">
 
                                                     <input value= "{{ egresado[0] }}" type="hidden" name="txtID" id="txtID">
                                                     <button  type="submit" class="btn btn-danger">Eliminar</button>
@@ -64,18 +65,29 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="/admin/egresados/actualizar2/{{egresado[0]}}" method="post">
+                                                        <form action="/admin/egresados/actualizar2/{{egresado[0]}}" method="post" enctype="multipart/form-data">
+
+                                                            <input value= "{{ egresado[0] }}" type="hidden" name="txtID" id="{{egresado[0]}}"> 
+                                                            <input value= "{{ egresado[2] }}" type="hidden" name="txtNombre" id="{{egresado[0]}}">
+                                                            <input value= "{{ egresado[1] }}" type="hidden" name="txtImagen" id="{{egresado[0]}}">
+                                                            <input value= "{{ egresado[3] }}" type="hidden" name="txtCedula" id="{{egresado[0]}}">
+                                                            <input value= "{{ egresado[4] }}" type="hidden" name="txtCv" id="{{egresado[0]}}">
+
+
                                                             <label>Nombre</label>
-                                                            <input type="text" class="form-control mb-3" name="txtNombre" value="{{egresado[2]}}">
-                                                            <!-- <label>Imagen</label>
-                                                            <input type="text" class="form-control mb-3" name="txtImagen" value="{{egresado[1]}}"> -->
+                                                            <input type="text" class="form-control mb-3" name="txtNombre" value="{{egresado[2]}}" required>
+                                                            <label>Imagen</label>
+                                                            <input type="file" accept=".png, .jpg, .jpeg, .gif" class="form-control mb-3" name="txtImagen" value="{{egresado[1]}}" required> 
                                                             <label>Cédula</label>
-                                                            <input type="text" class="form-control mb-3" name="txtCedula" value="{{egresado[3]}}">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-primary">Actualizar</button>
-                                                    </div>
+                                                            <input type="text" class="form-control mb-3" name="txtCedula" value="{{egresado[3]}}" required>
+                                                            <label for="txtCv" class="form-label">CV:</label>
+                                                            <input type="file" accept=".pdf" class="form-control mb-3" name="txtCv" value="{{egresado[4]}}" required>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                            </div>
+                                                        </form>
                                                 </div>
                                                 </div>
                                             </div>

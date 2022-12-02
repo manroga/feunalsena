@@ -8,19 +8,19 @@
                     <h1>Nueva Empresa</h1>
                 </div>
                 <div class="card-body">
-                    <form action="/admin/empresas/guardar2" method="post" enctype="multipart/form-data">
+                    <form action="/admin/empresas2/guardar2" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                           <label for="txtNombre" class="form-label">Nombre:</label>
-                          <input type="text" class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Escriba el nombre de la empresa">
+                          <input type="text" class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Escriba el nombre de la empresa" required>
                         <div class="mb-3">
                           <label for="txtImagen" class="form-label">Imagen:</label>
-                          <input type="file" class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione una imagen">
+                          <input type="file" accept=".png, .jpg, .jpeg, .gif" class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione una imagen" required>
                          <div class="mb-3">
                            <label for="txtNit" class="form-label">NIT:</label>
-                           <input type="text" class="form-control" name="txtNit" id="txtNit" aria-describedby="helpId" placeholder="Escriba el NIT">
+                           <input type="text" class="form-control" name="txtNit" id="txtNit" aria-describedby="helpId" placeholder="Escriba el NIT" required>
                         <div class="mb-3">
                             <label for="txtBrc" class="form-label">Brochure:</label>
-                            <input type="file" class="form-control" name="txtBrc" id="txtBrc" aria-describedby="helpId" placeholder="Suba su Brochure">  
+                            <input type="file" accept=".pdf" class="form-control" name="txtBrc" id="txtBrc" aria-describedby="helpId" placeholder="Suba su Brochure" required>  
                         </div>
                          </div>
                          

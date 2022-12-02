@@ -39,12 +39,13 @@
                                                     <input value= "{{ empresa[0] }}" type="hidden" name="txtID" id="{{empresa[0]}}"> 
                                                     <input value= "{{ empresa[2] }}" type="hidden" name="txtNombre" id="{{empresa[0]}}">
                                                     <input value= "{{ empresa[1] }}" type="hidden" name="txtImagen" id="{{empresa[0]}}">
-                                                    <input value= "{{ empresa[3] }}" type="hidden" name="txtCedula" id="{{empresa[0]}}">
+                                                    <input value= "{{ empresa[3] }}" type="hidden" name="txtNit" id="{{empresa[0]}}">
+                                                    <input value= "{{ empresa[4] }}" type="hidden" name="txtBrc" id="{{empresa[0]}}">
                                                     
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{empresa[0]}}"> Actualizar </button>
                                                 </form>
                                                 
-                                                <form action="/admin/empresas/borrar" method="post">
+                                                <form action="/admin/empresas/borrar2" method="post">
 
                                                     <input value= "{{ empresa[0] }}" type="hidden" name="txtID" id="txtID">
                                                     <button  type="submit" class="btn btn-danger">Eliminar</button>
@@ -64,18 +65,29 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="/admin/empresas/actualizar2/{{empresa[0]}}" method="post">
+                                                        <form action="/admin/empresas/actualizar2/{{empresa[0]}}" method="post" enctype="multipart/form-data">
+
+                                                            <input value= "{{ empresa[0] }}" type="hidden" name="txtID" id="{{empresa[0]}}"> 
+                                                            <input value= "{{ empresa[2] }}" type="hidden" name="txtNombre" id="{{empresa[0]}}">
+                                                            <input value= "{{ empresa[1] }}" type="hidden" name="txtImagen" id="{{empresa[0]}}">
+                                                            <input value= "{{ empresa[3] }}" type="hidden" name="txtNit" id="{{empresa[0]}}">
+                                                            <input value= "{{ empresa[4] }}" type="hidden" name="txtBrc" id="{{empresa[0]}}">
+
+
                                                             <label>Nombre</label>
-                                                            <input type="text" class="form-control mb-3" name="txtNombre" value="{{empresa[2]}}">
-                                                            <!-- <label>Imagen</label>
-                                                            <input type="text" class="form-control mb-3" name="txtImagen" value="{{empresa[1]}}"> -->
-                                                            <label>NIT</label>
-                                                            <input type="text" class="form-control mb-3" name="txtNit" value="{{empresa[3]}}">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-primary">Actualizar</button>
-                                                    </div>
+                                                            <input type="text" class="form-control mb-3" name="txtNombre" value="{{empresa[2]}}" required>
+                                                            <label>Imagen</label>
+                                                            <input type="file" accept=".png, .jpg, .jpeg, .gif" class="form-control mb-3" name="txtImagen" value="{{empresa[1]}}" required> 
+                                                            <label>Nit</label>
+                                                            <input type="text" class="form-control mb-3" name="txtNit" value="{{empresa[3]}}" required>
+                                                            <label for="txtBrc" class="form-label">Brochure:</label>
+                                                            <input type="file" accept=".pdf" class="form-control mb-3" name="txtBrc" value="{{empresa[4]}}" required>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                            </div>
+                                                        </form>
                                                 </div>
                                                 </div>
                                             </div>

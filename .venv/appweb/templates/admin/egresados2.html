@@ -11,16 +11,16 @@
                     <form action="/admin/egresados/guardar2" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                           <label for="txtNombre" class="form-label">Nombre:</label>
-                          <input type="text" class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Escriba el nombre del Egresado">
+                          <input type="text" class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Escriba el nombre del Egresado" required>
                         <div class="mb-3">
                           <label for="txtImagen" class="form-label">Imagen:</label>
-                          <input type="file" class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione una foto">
+                          <input type="file" accept=".png, .jpg, .jpeg, .gif" class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Seleccione una foto" required>
                          <div class="mb-3">
                            <label for="txtCedula" class="form-label">Cédula:</label>
-                           <input type="text" class="form-control" name="txtCedula" id="txtCedula" aria-describedby="helpId" placeholder="Escriba la Cédula">
+                           <input type="text" class="form-control" name="txtCedula" id="txtCedula" aria-describedby="helpId" placeholder="Escriba la Cédula" required>
                            <div class="mb-3">
                             <label for="txtCv" class="form-label">CV:</label>
-                            <input type="file" class="form-control" name="txtCv" id="txtCv" aria-describedby="helpId" placeholder="Suba su CV en PDF">
+                            <input type="file" accept=".pdf" class="form-control" name="txtCv" id="txtCv" aria-describedby="helpId" placeholder="Suba su CV en PDF" required>
                             </div>
                          </div>
                         </div>
